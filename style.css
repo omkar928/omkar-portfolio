@@ -115,10 +115,12 @@ body.hovering .cursor-ring{width:64px;height:64px;background:rgba(242,165,69,.12
 .hero-title .line{display:block;overflow:hidden;padding-bottom:.08em}
 .hero-title .line > span{display:inline-block;transform:translateY(110%);opacity:0;transition:transform 1.2s var(--ease),opacity 1.2s var(--ease)}
 body.loaded .hero-title .line > span{transform:none;opacity:1}
+body.loaded .hero-title .line{overflow:visible;transition:overflow 0s 1.6s}
+.hero-title{position:relative;z-index:3}
 .hero-title .line:nth-child(1) > span{transition-delay:.05s}.hero-title .line:nth-child(2) > span{transition-delay:.17s}.hero-title .line:nth-child(3) > span{transition-delay:.29s}.hero-title .line:nth-child(4) > span{transition-delay:.41s}
 .word-sm{font-size:clamp(24px,2.6vw,42px);font-weight:700}
 .word-lg{font-size:clamp(48px,5.6vw,92px)}
-.word-xl{font-size:clamp(64px,8.6vw,150px);letter-spacing:-.05em;line-height:.85}
+.word-xl{font-size:clamp(60px,8vw,140px);letter-spacing:-.05em;line-height:.85}
 .outline{color:transparent;-webkit-text-stroke:2px var(--ink);background:linear-gradient(90deg,var(--gold),var(--gold2),var(--gold));background-size:200%;
   -webkit-background-clip:text;animation:shine 6s linear infinite}
 .hero-title .outline{-webkit-text-stroke:1.5px rgba(244,241,234,.9)}
