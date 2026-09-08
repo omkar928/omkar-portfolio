@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Omkar Deshmukh — AI · Biomedical Innovation · Research</title>
+  <meta name="description" content="Omkar Deshmukh — Software Engineer, Researcher & Innovator. 7 patents filed, 4 granted (India + US), Rs 17 Cr IP valuation, NUS Young Fellow, TEDxSNPSU Organizer & Licensee.">
+  <meta property="og:title" content="Omkar Deshmukh — AI · Biomedical Innovation · Research">
+  <meta property="og:description" content="Patented 3D bioprinting systems, AI radiology platforms, robotics and healthcare R&D.">
+  <meta property="og:image" content="assets/omkar-square.jpg">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23000'/><text x='50' y='68' font-size='52' text-anchor='middle' fill='%23f2a545' font-family='Arial' font-weight='700'>OD</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="pre-logo">OD</div>
+    <div class="pre-bar"><span></span></div>
+    <div class="pre-text">Initialising neural interface…</div>
+  </div>
+
+  <!-- Custom cursor -->
+  <div class="cursor"></div>
+  <div class="cursor-ring"></div>
+
+  <!-- Scroll progress -->
+  <div class="scroll-progress"><span></span></div>
+
+  <!-- Nav -->
+  <header class="nav">
+    <a href="#top" class="logo" aria-label="Home"><span>O</span>D</a>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#patents">Patents</a>
+      <a href="#research">Research</a>
+      <a href="#projects">Projects</a>
+      <a href="#leadership">Leadership</a>
+      <a href="#awards">Awards</a>
+      <a href="#contact" class="nav-cta">Let's Talk</a>
+    </nav>
+    <button class="menu-btn" aria-label="Open menu"><span></span><span></span><span></span><em>MENU</em></button>
+  </header>
+
+  <!-- Full-screen menu -->
+  <div class="fullmenu">
+    <div class="fullmenu-inner">
+      <a href="#about" data-n="01">About</a>
+      <a href="#patents" data-n="02">Patents & IP</a>
+      <a href="#research" data-n="03">Research</a>
+      <a href="#projects" data-n="04">Projects</a>
+      <a href="#leadership" data-n="05">Leadership</a>
+      <a href="#awards" data-n="06">Awards</a>
+      <a href="#skills" data-n="07">Skills</a>
+      <a href="#contact" data-n="08">Contact</a>
+    </div>
+    <div class="fullmenu-foot">
+      <a href="mailto:deshmukhomkar@snpsu.edu.in">deshmukhomkar@snpsu.edu.in</a>
+      <a href="https://linkedin.com/in/omkar-deshmukh-258681356" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+  </div>
+
+  <!-- ================= HERO ================= -->
+  <section class="hero" id="top">
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-grid"></div>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow reveal-line">
+        <span class="dot"></span> Software Engineer · Researcher · Innovator
+      </div>
+      <h1 class="hero-title">
+        <span class="line"><span class="word-sm">"BUILD</span> <span class="word-lg">THE</span></span>
+        <span class="line"><span class="word-xl outline">FUTURE</span></span>
+        <span class="line"><span class="word-sm">YOU WERE</span> <span class="word-lg">MEANT</span></span>
+        <span class="line"><span class="word-sm">TO CREATE"</span></span>
+      </h1>
+      <div class="hero-name reveal-line">— OMKAR DESHMUKH</div>
+      <p class="hero-sub reveal-line">
+        Building at the intersection of <b>Artificial Intelligence</b>, <b>Biomedical Engineering</b> and
+        <b>Healthcare Innovation</b> — from patented 3D bioprinters to AI radiology platforms.
+      </p>
+      <div class="hero-ctas reveal-line">
+        <a href="#patents" class="btn btn-solid">Explore the Work</a>
+        <a href="#contact" class="btn btn-ghost">Start a Collaboration</a>
+      </div>
+      <div class="hero-role" id="typewriter"><span class="tw-text"></span><span class="tw-caret">|</span></div>
+    </div>
+
+    <div class="hero-photo" id="hero-photo">
+      <div class="photo-glow"></div>
+      <div class="photo-frame">
+        <img src="assets/omkar.jpg" alt="Omkar Deshmukh speaking at TEDxSNPSU">
+      </div>
+      <div class="photo-tag photo-tag-1"><b>7</b>Patents Filed</div>
+      <div class="photo-tag photo-tag-2"><b>4</b>Granted · IN + US</div>
+      <div class="photo-tag photo-tag-3"><b>₹17 Cr</b>IP Valuation</div>
+    </div>
+
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ================= STATS ================= -->
+  <section class="stats">
+    <div class="stat"><div class="stat-num" data-count="7">0</div><div class="stat-label">Patents Filed</div></div>
+    <div class="stat"><div class="stat-num" data-count="4">0</div><div class="stat-label">Granted · India + US</div></div>
+    <div class="stat"><div class="stat-num" data-count="17" data-prefix="₹" data-suffix=" Cr">0</div><div class="stat-label">IP Valuation</div></div>
+    <div class="stat"><div class="stat-num" data-count="30.45" data-prefix="₹" data-suffix=" L" data-decimals="2">0</div><div class="stat-label">Research Funding</div></div>
+    <div class="stat"><div class="stat-num" data-count="8" data-suffix="+">0</div><div class="stat-label">Publications</div></div>
+    <div class="stat"><div class="stat-num" data-count="36" data-suffix="+">0</div><div class="stat-label">Certifications</div></div>
+  </section>
+
+  <!-- ================= ABOUT ================= -->
+  <section class="section about" id="about">
+    <div class="section-head">
+      <span class="section-index">01</span>
+      <h2 class="section-title"><span class="bar"></span>ABOUT<br>OMKAR DESHMUKH</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-photo tilt" data-tilt>
+        <img src="assets/omkar-square.jpg" alt="Omkar Deshmukh">
+        <div class="about-photo-label">TEDxSNPSU · Organizer & Licensee</div>
+      </div>
+      <div class="about-text">
+        <h3 class="about-lead">Research-oriented engineer turning <em>patented ideas</em> into deployable healthcare technology.</h3>
+        <p>
+          I'm a Computer Science & Engineering student at Sapthagiri NPS University, Bengaluru, working across the full innovation
+          pipeline — research, prototyping, intellectual property and technology commercialization. My work spans patented
+          3D bioprinting systems, AI radiology platforms, robotics and public-policy-aware healthcare R&D.
+        </p>
+        <p>
+          I'm the President of <b>BioBridge</b>, a cross-domain biomedical engineering club; the Organizer & Licensee of
+          <b>TEDxSNPSU</b>; and Team Leader of <b>Team Vidyut</b> for ISRO STRC 2026. I was selected as a <b>Young Fellow</b> of the
+          FIERD Program at the National University of Singapore — 1 out of 2,68,483 applicants.
+        </p>
+        <div class="about-pills">
+          <span>Artificial Intelligence</span><span>Healthcare Innovation</span><span>Digital Health</span>
+          <span>Biomedical Engineering</span><span>Robotics</span><span>Public Policy</span><span>Innovation Management</span>
+        </div>
+        <div class="about-edu">
+          <div class="edu-item"><b>B.E. Computer Science & Engineering</b><span>Sapthagiri NPS University, Bengaluru · 2024 – 2028</span></div>
+          <div class="edu-item"><b>Young Fellowship — FIERD Program</b><span>National University of Singapore (NUS) · 1 of 2,68,483</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PATENTS ================= -->
+  <section class="section patents" id="patents">
+    <div class="section-head">
+      <span class="section-index">02</span>
+      <h2 class="section-title"><span class="bar"></span>PATENTS &<br>INTELLECTUAL PROPERTY</h2>
+      <p class="section-sub">7 Filed · 4 Granted · 1 Published · 1 Copyright</p>
+    </div>
+
+    <div class="patent-hero tilt" data-tilt data-tilt-max="4">
+      <div class="patent-hero-glow"></div>
+      <div class="patent-hero-left">
+        <div class="badge-row"><span class="badge gold">Flagship</span><span class="badge">4 Granted Patents</span><span class="badge">India × 2</span><span class="badge">United States × 2</span></div>
+        <h3>Integrated 3-D Bioprinting Device for Dermatological Treatment</h3>
+        <p>
+          AI-integrated device for skin regeneration therapy combining custom hardware, CNN-driven imaging and automated
+          clinical workflows. Patent design valuation assessed at approximately <b>₹17 Crore</b> via WIPO-based international
+          IP valuation resources.
+        </p>
+      </div>
+      <div class="patent-hero-right">
+        <div class="valuation"><span>Valuation</span><b>₹17 Cr</b></div>
+        <canvas id="dna-canvas" width="360" height="360"></canvas>
+      </div>
+    </div>
+
+    <div class="patent-grid">
+      <article class="card tilt" data-tilt>
+        <div class="card-icon">◈</div>
+        <span class="badge">Indian Patent · Filed & Published</span>
+        <h4>CNN Model for Facial Augmentation</h4>
+        <p>CNN model for facial augmentation, recognition, and treatment-oriented clinical analysis.</p>
+      </article>
+      <article class="card tilt" data-tilt>
+        <div class="card-icon">◉</div>
+        <span class="badge">Copyright Granted</span>
+        <h4>AI-Powered Diagnostic Model for Radiology</h4>
+        <p>AI diagnostic model for radiological assessment and early disease detection.</p>
+      </article>
+      <article class="card tilt" data-tilt>
+        <div class="card-icon">◆</div>
+        <span class="badge">IP Practice</span>
+        <h4>Drafting → Validation → Commercialization</h4>
+        <p>Hands-on patent drafting, technology validation and evaluation, and commercialization-oriented IP assessment.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ================= RESEARCH ================= -->
+  <section class="section research" id="research">
+    <div class="section-head">
+      <span class="section-index">03</span>
+      <h2 class="section-title"><span class="bar"></span>RESEARCH &<br>PUBLICATIONS</h2>
+    </div>
+    <div class="pub-list">
+      <div class="pub"><span class="pub-type">Q2 Journal</span><h4>CNN Technologies for 3-D Bioprinting</h4><span class="pub-venue">Research Paper</span></div>
+      <div class="pub"><span class="pub-type">Q3 Journal</span><h4>Integrating AI Models on Technological Benchmarks</h4><span class="pub-venue">Research Paper</span></div>
+      <div class="pub"><span class="pub-type">National Conf.</span><h4>Methods to Train U-Net, RNN and CNN Models</h4><span class="pub-venue">IISc, Bengaluru</span></div>
+      <div class="pub"><span class="pub-type">International Conf.</span><h4>Mathematical Representation of CNN Formulae</h4><span class="pub-venue">Delhi University</span></div>
+      <div class="pub"><span class="pub-type">Book Chapter</span><h4>Artificial Intelligence in Logistics and Supply Chain Management</h4><span class="pub-venue">Elsevier / Scopus</span></div>
+      <div class="pub"><span class="pub-type">Book Chapter</span><h4>AI in Predictive Modelling and Diagnostic Systems</h4><span class="pub-venue">Elsevier / Scopus</span></div>
+      <div class="pub"><span class="pub-type">Book Chapter</span><h4>Integrating AI for Big Data Models</h4><span class="pub-venue">Springer · Submitted</span></div>
+      <div class="pub"><span class="pub-type">Book Chapter</span><h4>AI Technologies for Dermatology</h4><span class="pub-venue">Submitted</span></div>
+    </div>
+  </section>
+
+  <!-- ================= PROJECTS ================= -->
+  <section class="section projects" id="projects">
+    <div class="section-head">
+      <span class="section-index">04</span>
+      <h2 class="section-title"><span class="bar"></span>SELECTED<br>PROJECTS</h2>
+    </div>
+    <div class="project-grid">
+      <article class="project tilt big" data-tilt>
+        <span class="proj-num">01</span>
+        <div class="proj-tags"><span>Patented</span><span>CNN / U-Net</span><span>Hardware</span></div>
+        <h4>Automated 3D Bioprinter for Dermatology (Vitiligo)</h4>
+        <p>Patented AI-integrated system using CNN/U-Net for skin regeneration, workflow automation and clinical decision support.</p>
+      </article>
+      <article class="project tilt" data-tilt>
+        <span class="proj-num">02</span>
+        <div class="proj-tags"><span>Copyright</span><span>Healthcare AI</span></div>
+        <h4>AI Radiological Assessment Platform</h4>
+        <p>Copyright-protected AI healthcare platform for early disease detection and diagnostic assistance.</p>
+      </article>
+      <article class="project tilt" data-tilt>
+        <span class="proj-num">03</span>
+        <div class="proj-tags"><span>ISRO STRC 2026</span><span>Team Leader</span></div>
+        <h4>Machine Learning for Space Applications</h4>
+        <p>Predictive ML models for space applications as Team Leader of Team Vidyut.</p>
+      </article>
+      <article class="project tilt" data-tilt>
+        <span class="proj-num">04</span>
+        <div class="proj-tags"><span>Patent Published</span><span>Computer Vision</span></div>
+        <h4>AI Facial Recognition & Augmentation System</h4>
+        <p>Patent-published CNN models for facial recognition and treatment-oriented diagnostics.</p>
+      </article>
+      <article class="project tilt" data-tilt>
+        <span class="proj-num">05</span>
+        <div class="proj-tags"><span>Web App</span><span>AI-assisted</span></div>
+        <h4>3D Bioprinting Web Application</h4>
+        <p>AI-assisted web app for print-path planning, imaging and parameter configuration.</p>
+      </article>
+      <article class="project tilt" data-tilt>
+        <span class="proj-num">06</span>
+        <div class="proj-tags"><span>React</span><span>Campus R&D</span></div>
+        <h4>BioBridge Club Website</h4>
+        <p>React platform supporting healthcare R&D initiatives on campus.</p>
+      </article>
+      <article class="project tilt wide" data-tilt>
+        <span class="proj-num">07</span>
+        <div class="proj-tags"><span>Robotics</span><span>Shortlisted</span></div>
+        <h4>National-Level Drone Prototype</h4>
+        <p>Shortlisted in national-level competitions.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ================= LEADERSHIP ================= -->
+  <section class="section leadership" id="leadership">
+    <div class="section-head">
+      <span class="section-index">05</span>
+      <h2 class="section-title"><span class="bar"></span>LEADERSHIP &<br>EXPERIENCE</h2>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-date">Jul 2025 — Present</div>
+        <div class="tl-body">
+          <h4>Organizer & Licensee — TEDxSNPSU</h4>
+          <p>Obtained the TED license; organized TEDx events (Dec 2025, May 2026) plus two awareness pre-events; managed speakers,
+          sponsorships and execution. Digital campaigns reached <b>~15.8 lakh impressions in 30 days</b>.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Founder</div>
+        <div class="tl-body">
+          <h4>President — BioBridge, Biomedical Engineering Club</h4>
+          <p>Founded and lead a cross-domain club uniting medicine, engineering and applied sciences to promote healthcare R&D.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">SNPSU</div>
+        <div class="tl-body">
+          <h4>Established Apple Development Center at SNPSU</h4>
+          <p>Among the earliest universities in India to host one; championed industry–academia collaboration and startup culture.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Oct 2024 — 2026</div>
+        <div class="tl-body">
+          <h4>Team Leader — ISRO STRC 2026, Team Vidyut</h4>
+          <p>Lead ML development, planning and technical milestones in the national-level ISRO challenge.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Oct 2024 — Present</div>
+        <div class="tl-body">
+          <h4>Robotics Director — Build Club, R&I Cell SNPSU</h4>
+          <p>Organized the Robotics Challenge, Future Innovator Challenge, BIS Awareness Camp, Research Methodology Workshop,
+          and a cross-disciplinary engineering × medical poster presentation.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">SCSCD</div>
+        <div class="tl-body">
+          <h4>Team Lead — District-Level Science & Football Competitions</h4>
+          <p>First prize in event hosting at the Annual Day.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= GRANTS ================= -->
+  <section class="section grants">
+    <div class="section-head">
+      <span class="section-index">06</span>
+      <h2 class="section-title"><span class="bar"></span>GRANTS, FUNDING &<br>FELLOWSHIPS</h2>
+    </div>
+    <div class="grant-grid">
+      <div class="grant tilt" data-tilt>
+        <div class="grant-amt">₹18,00,000</div>
+        <h4>Ministry of State Health & Family Welfare</h4>
+        <p>Healthcare innovation and biomedical research, incl. Government of Maharashtra support for the 3-D Bioprinting for Dermatological Treatment project.</p>
+      </div>
+      <div class="grant tilt" data-tilt>
+        <div class="grant-amt">₹12,45,000</div>
+        <h4>Ministry of Corporate Affairs</h4>
+        <p>Prototype development, research, publications and project operations.</p>
+      </div>
+      <div class="grant tilt gold" data-tilt>
+        <div class="grant-amt">1 / 2,68,483</div>
+        <h4>NUS Fellowship — National University of Singapore</h4>
+        <p>Fellowship and innovation programmes at NUS, including the FIERD Program; ongoing national and international research collaborations.</p>
+      </div>
+      <div class="grant tilt" data-tilt>
+        <div class="grant-amt">Proposals</div>
+        <h4>Funding Proposals Presented</h4>
+        <p>Rajiv Gandhi Science & Technology Commission (Nagpur) · ICMR (2nd proposal presentation) · Ministry of State Health & Family Welfare · Ministry of Corporate Affairs.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= AWARDS ================= -->
+  <section class="section awards" id="awards">
+    <div class="section-head">
+      <span class="section-index">07</span>
+      <h2 class="section-title"><span class="bar"></span>AWARDS &<br>RECOGNITIONS</h2>
+    </div>
+    <div class="marquee">
+      <div class="marquee-track">
+        <span>★ Dr. A.P.J. Abdul Kalam National Star Award (Research Excellence)</span>
+        <span>★ Young Researcher Award 2026 — Global Achievers of India</span>
+        <span>★ National Excellence Award, Youth R&D</span>
+        <span>★ Junior Scientist Honor — Worldwide Foundation</span>
+        <span>★ Student Excellence Award 2026–27, SNPSU</span>
+        <span>★ Outstanding Achievement in AI — NUS Data Science Conference</span>
+        <span>★ Tracker of the Year — National-Level TCS Hackathon, Pune</span>
+        <span>★ Best Use of AI — Presidency University, Bengaluru</span>
+        <span>★ Dr. A.P.J. Abdul Kalam National Star Award (Research Excellence)</span>
+        <span>★ Young Researcher Award 2026 — Global Achievers of India</span>
+        <span>★ National Excellence Award, Youth R&D</span>
+        <span>★ Junior Scientist Honor — Worldwide Foundation</span>
+        <span>★ Student Excellence Award 2026–27, SNPSU</span>
+        <span>★ Outstanding Achievement in AI — NUS Data Science Conference</span>
+        <span>★ Tracker of the Year — National-Level TCS Hackathon, Pune</span>
+        <span>★ Best Use of AI — Presidency University, Bengaluru</span>
+      </div>
+    </div>
+    <div class="award-grid">
+      <div class="award"><b>Dr. A.P.J. Abdul Kalam National Star Award</b><span>Research Excellence</span></div>
+      <div class="award"><b>Young Researcher Award 2026</b><span>Global Achievers of India</span></div>
+      <div class="award"><b>National Excellence Award</b><span>Youth R&D</span></div>
+      <div class="award"><b>Junior Scientist Honor</b><span>Worldwide Foundation</span></div>
+      <div class="award"><b>Student Excellence Award 2026–27</b><span>SNPSU</span></div>
+      <div class="award"><b>Outstanding Achievement in AI</b><span>NUS Data Science Conference</span></div>
+      <div class="award"><b>Tracker of the Year</b><span>National-Level TCS Hackathon, Pune</span></div>
+      <div class="award"><b>Best Use of AI</b><span>Presidency University, Bengaluru</span></div>
+      <div class="award"><b>1st Prize — Event Hosting & Science Competition</b><span>SCSCD</span></div>
+      <div class="award"><b>1st Prize — District-Level Football & Debate</b><span>District Level</span></div>
+      <div class="award"><b>3rd Prize — District-Level Science Competition</b><span>District Level</span></div>
+    </div>
+  </section>
+
+  <!-- ================= SKILLS & CERTS ================= -->
+  <section class="section skills" id="skills">
+    <div class="section-head">
+      <span class="section-index">08</span>
+      <h2 class="section-title"><span class="bar"></span>SKILLS &<br>CERTIFICATIONS</h2>
+      <p class="section-sub">36+ certifications across Microsoft, IBM, Infosys Springboard & Cisco</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-col">
+        <h4>AI / ML</h4>
+        <div class="chips"><span>Deep Learning</span><span>CNN / U-Net</span><span>Medical Image Analytics</span><span>Computer Vision</span><span>Predictive Modelling</span><span>LLMs</span><span>Prompt Engineering</span></div>
+      </div>
+      <div class="skill-col">
+        <h4>Programming</h4>
+        <div class="chips"><span>Python</span><span>JavaScript</span><span>C</span><span>C#</span><span>HTML</span></div>
+      </div>
+      <div class="skill-col">
+        <h4>Backend & Data</h4>
+        <div class="chips"><span>Node.js</span><span>REST APIs</span><span>MongoDB</span><span>SQL</span><span>Data Modelling</span><span>NumPy</span><span>Pandas</span></div>
+      </div>
+      <div class="skill-col">
+        <h4>Tools & Practice</h4>
+        <div class="chips"><span>Git / GitHub</span><span>React</span><span>Research Methodology</span><span>Innovation Management</span><span>Technology Commercialization</span><span>Technical Documentation</span></div>
+      </div>
+    </div>
+
+    <div class="cert-grid">
+      <div class="cert tilt" data-tilt>
+        <div class="cert-head"><b>Microsoft</b><span class="cert-count">15</span></div>
+        <div class="cert-bar"><i style="--w:100%"></i></div>
+        <p>Azure AI Fundamentals · AI Builder · Computer Vision · NLP · Azure OpenAI · Generative AI · Prompt Engineering · AI Agents · AI Applications · SQL · Power BI · Azure Data Fundamentals · Azure Fundamentals · Azure Administrator · Azure Developer</p>
+      </div>
+      <div class="cert tilt" data-tilt>
+        <div class="cert-head"><b>IBM</b><span class="cert-count">9</span></div>
+        <div class="cert-bar"><i style="--w:60%"></i></div>
+        <p>AI Fundamentals · AI Analyst · Generative AI · AI Ethics · AI Agents · Responsible AI · Machine Learning Basics · Deep Learning · Neural Networks</p>
+      </div>
+      <div class="cert tilt" data-tilt>
+        <div class="cert-head"><b>Infosys Springboard</b><span class="cert-count">7+</span></div>
+        <div class="cert-bar"><i style="--w:47%"></i></div>
+        <p>Python Data Analyst · Python Automation · Enterprise Automation with Python · DBMS · Network Security Systems · Cyber Security & Cyber Law Ethics · Soft Skills</p>
+      </div>
+      <div class="cert tilt" data-tilt>
+        <div class="cert-head"><b>Cisco Networking Academy</b><span class="cert-count">5</span></div>
+        <div class="cert-bar"><i style="--w:33%"></i></div>
+        <p>Networking Basics · Introduction to Networks · Network Support · Packet Tracer · Introduction to Cybersecurity</p>
+      </div>
+    </div>
+    <p class="cert-note">+ 13 completed Python courses and ongoing AI/ML and innovation training programmes.</p>
+
+    <div class="lang-row">
+      <span><b>Marathi</b> Mother Tongue</span>
+      <span><b>English · Hindi · Sanskrit</b> Proficient</span>
+      <span><b>Kannada · Gujarati</b> Intermediate</span>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section class="section contact" id="contact">
+    <canvas id="contact-canvas"></canvas>
+    <div class="contact-inner">
+      <span class="section-index">09</span>
+      <h2 class="contact-title">LET'S BUILD<br><span class="outline">SOMETHING</span><br>THAT MATTERS</h2>
+      <p>Open to research collaborations, healthcare-AI partnerships, speaking invitations and innovation programmes.</p>
+      <div class="contact-links">
+        <a href="mailto:deshmukhomkar@snpsu.edu.in" class="contact-link"><span>Email</span><b>deshmukhomkar@snpsu.edu.in</b></a>
+        <a href="tel:+918087292383" class="contact-link"><span>Phone</span><b>+91 80872 92383</b></a>
+        <a href="https://linkedin.com/in/omkar-deshmukh-258681356" target="_blank" rel="noopener" class="contact-link"><span>LinkedIn</span><b>omkar-deshmukh-258681356 ↗</b></a>
+        <a href="https://deshmukhomkar.in/" target="_blank" rel="noopener" class="contact-link"><span>Web</span><b>deshmukhomkar.in ↗</b></a>
+      </div>
+      <div class="contact-loc">Bengaluru, Karnataka, India</div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="logo"><span>O</span>D</div>
+    <div>© <span id="year"></span> Omkar Deshmukh. Hand-built with a custom 3D canvas engine & a lot of curiosity.</div>
+    <a href="#top" class="to-top">Back to top ↑</a>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
