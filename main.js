@@ -149,7 +149,7 @@
     let t0 = performance.now();
     (function frame(now) {
       requestAnimationFrame(frame); if (!running) return;
-      const T = (now - t0) / 1000;
+      const T = Math.max(0, (now - t0) / 1000);
       cx += (tx - cx) * .05; cy += (ty - cy) * .05;
       const ox = W / 2 + offX + cx * -30, oy = H / 2 + offY - sy * .25 + cy * -20;
       ctx.clearRect(0, 0, W, H);
@@ -179,7 +179,7 @@
       for (const [a, b] of edges) { const z = (pts[a][2] + pts[b][2]) / 2; ctx.strokeStyle = `rgba(${GOLD},${.05 + (z - .7) * .5})`; ctx.beginPath(); ctx.moveTo(pts[a][0], pts[a][1]); ctx.lineTo(pts[b][0], pts[b][1]); ctx.stroke(); }
       for (const p of pts) { const z = p[2]; ctx.fillStyle = `rgba(${GOLD},${.25 + (z - .7) * 1.6})`; ctx.beginPath(); ctx.arc(p[0], p[1], 1 + (z - .7) * 4, 0, Math.PI * 2); ctx.fill(); }
       // occasional "signal" pulses along edges
-      for (let k = 0; k < 6; k++) { const e = edges[(Math.floor(T * 2) * 31 + k * 97) % edges.length]; const f = (T * 2) % 1; const a = pts[e[0]], b = pts[e[1]]; ctx.fillStyle = '#ffd27a'; ctx.beginPath(); ctx.arc(a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f, 2, 0, Math.PI * 2); ctx.fill(); }
+      for (let k = 0; k < 6; k++) { const e = edges[((Math.floor(T * 2) * 31 + k * 97) % edges.length + edges.length) % edges.length]; const f = (T * 2) % 1; const a = pts[e[0]], b = pts[e[1]]; ctx.fillStyle = '#ffd27a'; ctx.beginPath(); ctx.arc(a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f, 2, 0, Math.PI * 2); ctx.fill(); }
 
       // helix (left side on wide screens, hidden on small)
       if (W >= 1100) {
