@@ -128,7 +128,7 @@
     const helix = [];
     for (let i = 0; i < 48; i++) { const a = i / 48 * Math.PI * 4, y = (i / 48 - .5) * 2.2; helix.push([[Math.cos(a) * .22, y, Math.sin(a) * .22], [-Math.cos(a) * .22, y, -Math.sin(a) * .22]]); }
     // --- Dust
-    const dust = Array.from({ length: 260 }, () => [(Math.random() - .5) * 6, (Math.random() - .5) * 4, (Math.random() - .5) * 4]);
+    const dust = Array.from({ length: innerWidth < 680 ? 90 : 260 }, () => [(Math.random() - .5) * 6, (Math.random() - .5) * 4, (Math.random() - .5) * 4]);
 
     const resize = () => {
       dpr = Math.min(devicePixelRatio || 1, 2);
@@ -201,7 +201,7 @@
     const ctx = canvas.getContext('2d');
     let w, h, pts = [], mouse = { x: -9999, y: -9999 };
     const resize = () => { w = canvas.width = canvas.clientWidth; h = canvas.height = canvas.clientHeight;
-      pts = Array.from({ length: Math.min(160, Math.floor(w * h / 9000)) }, () => ({ x: Math.random() * w, y: Math.random() * h, vx: (Math.random() - .5) * .35, vy: (Math.random() - .5) * .35 })); };
+      pts = Array.from({ length: Math.min(w < 680 ? 60 : 160, Math.floor(w * h / 9000)) }, () => ({ x: Math.random() * w, y: Math.random() * h, vx: (Math.random() - .5) * .35, vy: (Math.random() - .5) * .35 })); };
     resize(); addEventListener('resize', resize);
     canvas.parentElement.addEventListener('mousemove', e => { const r = canvas.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; });
     canvas.parentElement.addEventListener('mouseleave', () => { mouse.x = mouse.y = -9999; });
@@ -314,7 +314,7 @@
     addEventListener('scroll', () => {
       const y = scrollY, vh = innerHeight;
       if (y < vh) { hc.style.setProperty('--sy', (-y * .25) + 'px'); hc.style.opacity = 1 - y / vh * 1.1; hp.style.setProperty('--sy', (y * .18) + 'px'); }
-      if (ct) { const r = ct.getBoundingClientRect(); ct.style.transform = `translateY(${(r.top - vh) * .08}px)`; }
+      if (ct && innerWidth > 680) { const r = ct.getBoundingClientRect(); const off = Math.max(-40, Math.min(40, (r.top - vh) * .08)); ct.style.transform = `translateY(${off}px)`; }
     }, { passive: true });
   }
 
