@@ -189,13 +189,14 @@ body.loaded .photo-tag-1{transition-delay:1.2s}body.loaded .photo-tag-2{transiti
 .section{padding:140px 48px;position:relative}
 .section-head{margin-bottom:70px;position:relative}
 .section-index{font-family:var(--font-m);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:18px}
-.section-title{overflow-wrap:break-word;hyphens:auto;-webkit-hyphens:auto;
+.section-title{overflow-wrap:break-word;hyphens:none;-webkit-hyphens:none;
   font-family:var(--font-d);font-weight:800;font-size:clamp(32px,4.4vw,64px);line-height:1.02;letter-spacing:-.03em;
   position:relative;padding-left:34px;max-width:1000px;text-wrap:balance;
 }
 .section-title .bar{position:absolute;left:0;top:0;bottom:0;width:10px;background:var(--gold);transform-origin:top;transform:scaleY(0)}
 .section-sub{margin-top:22px;font-family:var(--font-m);font-size:13px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);padding-left:34px}
 
+h1,h2,h3,h4,.section-title,.contact-title,.hero-title,.proj-num,.grant-amt,.stat-num{hyphens:none;-webkit-hyphens:none}
 /* justified copy */
 .just{
   text-align:justify;text-justify:inter-word;
@@ -300,7 +301,7 @@ body.loaded .hand-note-photo{opacity:.9}
   background:linear-gradient(135deg,rgba(242,165,69,.08),rgba(255,255,255,.02) 60%);position:relative;overflow:hidden;margin-bottom:28px;border-radius:8px;
 }
 .patent-hero-glow{position:absolute;width:600px;height:600px;right:-200px;top:-200px;border-radius:50%;background:radial-gradient(circle,rgba(242,165,69,.25),transparent 65%);filter:blur(30px);pointer-events:none}
-.patent-hero h3{overflow-wrap:break-word;hyphens:auto;-webkit-hyphens:auto;font-family:var(--font-d);font-weight:800;font-size:clamp(28px,3.4vw,46px);line-height:1.05;letter-spacing:-.02em;margin:22px 0 18px}
+.patent-hero h3{overflow-wrap:break-word;hyphens:none;-webkit-hyphens:none;font-family:var(--font-d);font-weight:800;font-size:clamp(28px,3.4vw,46px);line-height:1.05;letter-spacing:-.02em;margin:22px 0 18px}
 .patent-hero p{font-size:17px;color:var(--muted);max-width:640px}
 .patent-hero-right{position:relative;display:flex;flex-direction:column;align-items:center;gap:10px}
 #dna-canvas{width:100%;max-width:360px;height:auto;aspect-ratio:1}
@@ -505,7 +506,7 @@ body.loaded .hand-note-photo{opacity:.9}
   @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(242,165,69,.5)}100%{box-shadow:0 0 0 8px rgba(242,165,69,0)}}
   .hero-eyebrow{font-size:10px;letter-spacing:.16em;margin-bottom:26px}
 
-  .section-title{font-size:8.4vw;line-height:1.06;padding-left:18px}
+  .section-title{font-size:7.6vw;line-height:1.08;padding-left:16px}
   .section-title .bar{width:5px}
   .section-index{font-size:10px;letter-spacing:.18em}
   .section-sub{padding-left:18px;font-size:11px}
@@ -544,6 +545,10 @@ body.loaded .hand-note-photo{opacity:.9}
   .hero-ctas{gap:12px}
   .btn{width:100%;padding:15px 22px}
   .hero-role{margin-top:26px}
+  .marquee-track{gap:26px}
+  .marquee-track span{font-size:13px;letter-spacing:.02em}
+  .marquee{padding:16px 0;margin:0 -16px 40px}
+  .ticker-track{gap:18px;font-size:10px}
   .project-grid{grid-auto-rows:auto}
   .project{min-height:auto;padding:28px 22px}
   .proj-num{margin-bottom:14px;font-size:38px}
@@ -556,5 +561,5 @@ body.loaded .hand-note-photo{opacity:.9}
 @media (max-width:400px){
   .stat-num{font-size:8.4vw}
   .mini-stats,.lang-grid{grid-template-columns:1fr}
-  .section-title{font-size:9vw}
+  .section-title{font-size:8.2vw}
 }
