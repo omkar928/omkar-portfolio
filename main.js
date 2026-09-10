@@ -82,6 +82,42 @@
     });
   });
 
+
+  /* ---------------- Auto-fit display type ----------------
+     Font metrics differ per device/browser, so a fixed vw size can still
+     overflow. Measure the real rendered width and scale down until it fits. */
+  function fitDisplayType() {
+    const title = $('.hero-title');
+    if (title) {
+      const avail = title.clientWidth;
+      $$('.line', title).forEach(line => {
+        const words = $$('[data-fx]', line);
+        if (!words.length || !avail) return;
+        words.forEach(w => w.style.fontSize = '');
+        const gap = (words.length - 1) * 12;
+        let total = words.reduce((s, w) => s + w.getBoundingClientRect().width, 0) + gap;
+        if (total > avail) {
+          const k = (avail / total) * 0.97;
+          words.forEach(w => {
+            const base = parseFloat(getComputedStyle(w).fontSize);
+            w.style.fontSize = (base * k).toFixed(1) + 'px';
+          });
+        }
+      });
+    }
+    const ct = $('.contact-title');
+    if (ct) {
+      ct.style.fontSize = '';
+      let guard = 0;
+      while (ct.scrollWidth > ct.clientWidth + 1 && guard++ < 40) {
+        ct.style.fontSize = (parseFloat(getComputedStyle(ct).fontSize) * 0.94).toFixed(1) + 'px';
+      }
+    }
+  }
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitDisplayType);
+  fitDisplayType();
+  let fitT; addEventListener('resize', () => { clearTimeout(fitT); fitT = setTimeout(fitDisplayType, 150); });
+
   /* ---------------- Typewriter ---------------- */
   const roles = ['Software Engineer', 'Researcher · Innovator', 'Developer & Event Organizer', 'Patent Holder · 4 Granted (IN + US)', 'TEDxSNPSU Organizer & Licensee', 'President, BioBridge', 'Team Leader, ISRO STRC 2026', 'NUS Young Fellow (FIERD)'];
   const tw = $('.tw-text'); let ri = 0, ci = 0, del = false;
