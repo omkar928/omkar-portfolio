@@ -468,7 +468,7 @@ body.loaded .hand-note-photo{opacity:.9}
   .photo-tag-1{left:0}.photo-tag-2{right:0}.photo-tag-3{left:0}
   .stats{grid-template-columns:repeat(2,1fr)}
   .stat:nth-child(3n){border-right:1px solid var(--line)}.stat:nth-child(2n){border-right:0}
-  .section{padding:80px 16px}
+  .section{padding:80px 14px}
   .section-title{padding-left:22px}.section-title .bar{width:6px}.section-sub{padding-left:22px}
   .patent-grid,.project-grid,.award-grid,.grant-grid,.cert-grid,.skills-grid,.contact-links{grid-template-columns:1fr}
   .project.big{grid-column:span 1}
@@ -497,10 +497,11 @@ body.loaded .hand-note-photo{opacity:.9}
   .word-xl{font-size:15vw;letter-spacing:-.045em}
   .hero-name{font-size:11px;letter-spacing:.3em;margin:22px 0 20px}
   .hero-sub{font-size:15px;line-height:1.72}
-  .just{
-    text-align:left;
-    hyphens:none;-webkit-hyphens:none;
-    line-height:1.75;font-size:15px;word-spacing:normal;
+  .just, p.just, .about-text p.just, .tl-body p.just, .contact p.just{
+    text-align:justify;text-justify:inter-word;
+    text-align-last:left;              /* never stretch the final line */
+    hyphens:none;-webkit-hyphens:none; /* justified, but no words split apart */
+    line-height:1.78;font-size:14.5px;
   }
   .dot{width:6px;height:6px}
   @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(242,165,69,.5)}100%{box-shadow:0 0 0 8px rgba(242,165,69,0)}}
@@ -540,7 +541,7 @@ body.loaded .hand-note-photo{opacity:.9}
 
   /* the 3D scene sat on top of the buttons — push it back and dim it */
   #hero-canvas{opacity:.42}
-  .hero{padding:110px 16px 70px;min-height:auto}
+  .hero{padding:110px 14px 70px;min-height:auto}
   .hero-photo{width:min(86%,340px);justify-self:center;margin-top:8px}
   .hero-ctas{gap:12px}
   .btn{width:100%;padding:15px 22px}
