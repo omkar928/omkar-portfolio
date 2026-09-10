@@ -38,8 +38,52 @@
   $$('.fullmenu a').forEach(a => a.addEventListener('click', () => toggleMenu(false)));
   addEventListener('keydown', e => { if (e.key === 'Escape') toggleMenu(false); });
 
+
+  /* ---------------- Text splitting ---------------- */
+  // Wrap words in .w (keeps <b>/<em> inline elements intact by recursing into them)
+  function splitWords(el) {
+    const walk = node => {
+      [...node.childNodes].forEach(n => {
+        if (n.nodeType === 3) {
+          const frag = document.createDocumentFragment();
+          n.textContent.split(/(\s+)/).forEach(part => {
+            if (!part) return;
+            if (/^\s+$/.test(part)) frag.appendChild(document.createTextNode(' '));
+            else { const s = document.createElement('span'); s.className = 'w'; s.textContent = part; frag.appendChild(s); }
+          });
+          n.replaceWith(frag);
+        } else if (n.nodeType === 1 && !n.classList.contains('bar')) walk(n);
+      });
+    };
+    walk(el);
+    $$('.w', el).forEach((w, i) => w.style.transitionDelay = (i * 28) + 'ms');
+  }
+  $$('[data-words]').forEach(splitWords);
+
+  // Hero headline: each word gets its own entrance (rise / flip / scatter / blur / swing),
+  // set as an inline start state; CSS moves every character to rest once body.loaded.
+  const rnd = (a, b) => a + Math.random() * (b - a);
+  const FX = {
+    rise:    (i, n) => ({ t: `translateY(115%)`, d: 80 + i * 45 }),
+    flip:    (i, n) => ({ t: `rotateX(-95deg) translateY(.3em)`, o: '50% 100%', d: 260 + i * 70 }),
+    scatter: (i, n) => ({ t: `translate3d(${rnd(-160, 160)}px,${rnd(-120, 120)}px,${rnd(-500, -200)}px) rotate(${rnd(-50, 50)}deg) scale(.5)`, f: 'blur(10px)', d: 380 + Math.random() * 500 }),
+    blur:    (i, n) => ({ t: `translateX(${rnd(-14, 14)}px) scale(1.15)`, f: 'blur(16px)', d: 900 + i * 40 }),
+    swing:   (i, n) => ({ t: `rotateY(95deg) translateX(-.2em)`, o: '0 50%', d: 1050 + i * 60 }),
+  };
+  $$('.hero-title [data-fx]').forEach(word => {
+    const fx = FX[word.dataset.fx] || FX.rise, chars = [...word.textContent];
+    word.textContent = '';
+    chars.forEach((ch, i) => {
+      const s = document.createElement('span'); s.className = 'ch' + (ch === ' ' ? ' space' : ''); s.textContent = ch === ' ' ? ' ' : ch;
+      const st = fx(i, chars.length);
+      s.style.transform = st.t; if (st.f) s.style.filter = st.f; if (st.o) s.style.transformOrigin = st.o;
+      s.style.transitionDelay = Math.round(st.d) + 'ms';
+      word.appendChild(s);
+    });
+  });
+
   /* ---------------- Typewriter ---------------- */
-  const roles = ['Software Engineer', 'AI & Biomedical Researcher', 'Patent Holder · 4 Granted (IN + US)', 'TEDxSNPSU Organizer & Licensee', 'President, BioBridge', 'Team Leader, ISRO STRC 2026', 'NUS Young Fellow (FIERD)'];
+  const roles = ['Software Engineer', 'Researcher · Innovator', 'Developer & Event Organizer', 'Patent Holder · 4 Granted (IN + US)', 'TEDxSNPSU Organizer & Licensee', 'President, BioBridge', 'Team Leader, ISRO STRC 2026', 'NUS Young Fellow (FIERD)'];
   const tw = $('.tw-text'); let ri = 0, ci = 0, del = false;
   (function type() {
     const word = roles[ri]; tw.textContent = word.slice(0, ci);
@@ -213,10 +257,11 @@
       });
       el.addEventListener('mouseleave', () => { el.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)'; });
     });
-    const ph = $('#hero-photo');
+    const ph = $('#hero-photo'), hc = $('#hero-content');
     addEventListener('mousemove', e => {
       const x = e.clientX / innerWidth - .5, y = e.clientY / innerHeight - .5;
       ph.style.setProperty('--rx', (-y * 8) + 'deg'); ph.style.setProperty('--ry', (x * 10) + 'deg');
+      hc.style.setProperty('--hry', (x * 4) + 'deg'); hc.style.setProperty('--hrx', (-y * 3) + 'deg');
     });
   }
 
@@ -239,8 +284,9 @@
 
   /* ---------------- Scroll reveals ---------------- */
   function initReveals() {
-    const groups = ['.stat', '.about-photo', '.about-text', '.patent-hero', '.card', '.pub', '.project', '.tl-item', '.grant', '.award', '.skill-col', '.cert', '.cert-note', '.lang-row', '.contact-inner > *'];
+    const groups = ['.stat', '.about-photo', '.about-text', '.mini-stats > div', '.patent-hero', '.card', '.pub', '.project', '.events', '.tl-item', '.grant', '.award', '.skill-col', '.sub-head', '.lang', '.cert', '.cert-note', '.contact-inner > *'];
     const targets = groups.flatMap(sel => $$(sel));
+    $$('[data-words]:not(.hero-sub):not(.section-title)').forEach(el => targets.push(el));
     targets.forEach(el => el.classList.add('rv'));
     $$('.section-head').forEach(h => h.classList.add('rv-head'));
     const io = new IntersectionObserver(entries => entries.forEach(e => {
