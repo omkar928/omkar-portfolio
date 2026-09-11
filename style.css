@@ -26,6 +26,7 @@ body{
 }
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%;height:auto}
+[hidden]{display:none!important}
 b,strong{font-weight:600;color:var(--ink)}
 ::selection{background:var(--gold);color:#000}
 
@@ -445,8 +446,26 @@ body.loaded .hand-note-photo{opacity:.9}
 .rec-play:hover .rec-play-ring{background:rgba(242,165,69,.16);border-color:var(--gold);transform:scale(1.08)}
 .rec-play:hover .rec-play-tri{border-left-color:var(--gold2)}
 .rec-video.playing .rec-play{opacity:0;pointer-events:none;transform:scale(.7)}
+.rec-video.playing.loading .rec-play{opacity:1;pointer-events:none;transform:none}
 .rec-video.playing .rec-badge{opacity:0}
 .rec-badge{transition:opacity .4s}
+
+/* buffering spinner replaces the triangle */
+.rec-spin{display:none;width:34px;height:34px;border:2px solid rgba(242,165,69,.25);border-top-color:var(--gold);border-radius:50%;animation:recSpin .9s linear infinite}
+@keyframes recSpin{to{transform:rotate(360deg)}}
+.rec-video.loading .rec-play-tri{display:none}
+.rec-video.loading .rec-spin{display:block}
+.rec-video.loading .rec-play::before{animation:none;opacity:0}
+
+/* escape hatch when playback will not start */
+.rec-fallback{
+  position:absolute;inset:0;z-index:6;padding:24px;
+  background:rgba(5,5,5,.86);backdrop-filter:blur(3px);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center
+}
+.rec-fallback p{font-size:13.5px;color:var(--muted)}
+.rec-fallback a{font-family:var(--font-m);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);border-bottom:1px solid rgba(242,165,69,.4)}
+.rec-fallback a:hover{color:var(--gold2)}
 
 .rec-cap{padding:18px 2px 0;display:flex;flex-direction:column;gap:6px}
 .rec-cap b{font-family:var(--font-d);font-weight:700;font-size:19px;letter-spacing:-.015em;line-height:1.3;hyphens:none}

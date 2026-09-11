@@ -326,17 +326,45 @@
   /* ---------------- Recognition video ---------------- */
   function initRecVideo() {
     const wrap = $('.rec-video'); if (!wrap) return;
-    const video = $('#vc-video', wrap), btn = $('.rec-play', wrap);
+    const video = $('#vc-video', wrap), btn = $('.rec-play', wrap), fb = $('.rec-fallback', wrap);
     if (!video || !btn) return;
+
+    let started = false, stallTimer = null;
+    const showFallback = () => { if (fb) fb.hidden = false; wrap.classList.remove('loading'); };
+    const armStall = () => { clearTimeout(stallTimer); stallTimer = setTimeout(() => { if (video.readyState < 3) showFallback(); }, 12000); };
+    const clearStall = () => { clearTimeout(stallTimer); if (fb) fb.hidden = true; };
+
     btn.addEventListener('click', () => {
+      // Ignore repeat taps while the first one is still buffering.
+      if (wrap.classList.contains('loading')) return;
+      started = true;
       video.setAttribute('controls', '');
-      wrap.classList.add('playing');
+      wrap.classList.add('playing', 'loading');
+      armStall();
       const p = video.play();
-      if (p && p.catch) p.catch(() => { wrap.classList.remove('playing'); });
+      if (p && p.catch) p.catch(err => {
+        // Autoplay policy can refuse an unmuted start; retry muted so something plays.
+        if (err && err.name === 'NotAllowedError') {
+          video.muted = true;
+          const q = video.play();
+          if (q && q.catch) q.catch(showFallback);
+        } else showFallback();
+      });
     });
-    video.addEventListener('pause', () => { if (video.currentTime === 0) wrap.classList.remove('playing'); });
-    video.addEventListener('ended', () => { wrap.classList.remove('playing'); video.removeAttribute('controls'); video.currentTime = 0; });
-    // pause when scrolled out of view
+
+    video.addEventListener('waiting', () => { if (started) { wrap.classList.add('loading'); armStall(); } });
+    video.addEventListener('playing', () => { wrap.classList.remove('loading'); clearStall(); });
+    video.addEventListener('canplay', () => { wrap.classList.remove('loading'); clearStall(); });
+    video.addEventListener('error', showFallback);
+    video.addEventListener('stalled', () => { if (started) armStall(); });
+    // Only return to the poster state when the clip actually finishes — a transient
+    // pause while buffering must not throw the overlay back over the video.
+    video.addEventListener('ended', () => {
+      started = false; clearStall();
+      wrap.classList.remove('playing', 'loading');
+      video.removeAttribute('controls'); video.currentTime = 0;
+    });
+    // Pause (but keep the player open) when scrolled well out of view.
     new IntersectionObserver(([e]) => { if (!e.isIntersecting && !video.paused) video.pause(); }, { threshold: 0 }).observe(video);
   }
 

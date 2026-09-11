@@ -11,7 +11,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23000'/><text x='50' y='68' font-size='52' text-anchor='middle' fill='%23f2a545' font-family='Arial' font-weight='700'>OD</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=12">
+  <link rel="stylesheet" href="style.css?v=14">
 </head>
 <body>
 
@@ -443,15 +443,20 @@
       <!-- Feature: VC stage recognition video -->
       <figure class="rec-item rec-video" data-tilt data-tilt-max="4">
         <div class="rec-frame">
-          <video id="vc-video" preload="none" playsinline controlslist="nodownload"
+          <video id="vc-video" preload="metadata" playsinline
                  poster="assets/rec-vc-poster.jpg">
             <source src="assets/rec-vc-stage.mp4" type="video/mp4">
           </video>
           <button class="rec-play" type="button" aria-label="Play the recognition video">
             <span class="rec-play-ring"></span>
             <span class="rec-play-tri"></span>
+            <span class="rec-spin"></span>
           </button>
           <span class="rec-badge">R-01 · Video</span>
+          <div class="rec-fallback" hidden>
+            <p>Having trouble playing it here?</p>
+            <a href="assets/rec-vc-stage.mp4" target="_blank" rel="noopener">Open the video in a new tab ↗</a>
+          </div>
         </div>
         <figcaption class="rec-cap">
           <b>Recognised on stage by the Hon'ble Vice-Chancellor</b>
@@ -598,6 +603,6 @@
     <div class="footer-links"><a href="assets/Omkar-Deshmukh-CV.pdf" download="Omkar-Deshmukh-CV.pdf">Download CV ↓</a><a href="#top" class="to-top">Back to top ↑</a></div>
   </footer>
 
-  <script src="main.js?v=12"></script>
+  <script src="main.js?v=14"></script>
 </body>
 </html>
