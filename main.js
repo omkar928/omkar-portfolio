@@ -86,6 +86,18 @@
   /* ---------------- Auto-fit display type ----------------
      Font metrics differ per device/browser, so a fixed vw size can still
      overflow. Measure the real rendered width and scale down until it fits. */
+  // Shrink an element's font-size until its content fits its box.
+  function fitToWidth(el, minPx = 12) {
+    if (!el || !el.clientWidth) return;
+    el.style.fontSize = '';
+    let guard = 0;
+    while (el.scrollWidth > el.clientWidth + 1 && guard++ < 40) {
+      const size = parseFloat(getComputedStyle(el).fontSize);
+      if (size <= minPx) break;
+      el.style.fontSize = (size * 0.94).toFixed(1) + 'px';
+    }
+  }
+
   function fitDisplayType() {
     const title = $('.hero-title');
     if (title) {
@@ -105,6 +117,16 @@
         }
       });
     }
+    $$('.mini-stats b, .valuation b, .grant-amt').forEach(el => fitToWidth(el));
+    // Counters animate, so size them against their FINAL value, then lock it in.
+    $$('.stat-num').forEach(el => {
+      const t = parseFloat(el.dataset.count), dec = parseInt(el.dataset.decimals || 0);
+      const pre = el.dataset.prefix || '', suf = el.dataset.suffix || '';
+      const shown = el.textContent;
+      el.textContent = pre + t.toFixed(dec) + suf;
+      fitToWidth(el);
+      el.textContent = shown;
+    });
     const ct = $('.contact-title');
     if (ct) {
       ct.style.fontSize = '';
@@ -301,6 +323,23 @@
     });
   }
 
+  /* ---------------- Recognition video ---------------- */
+  function initRecVideo() {
+    const wrap = $('.rec-video'); if (!wrap) return;
+    const video = $('#vc-video', wrap), btn = $('.rec-play', wrap);
+    if (!video || !btn) return;
+    btn.addEventListener('click', () => {
+      video.setAttribute('controls', '');
+      wrap.classList.add('playing');
+      const p = video.play();
+      if (p && p.catch) p.catch(() => { wrap.classList.remove('playing'); });
+    });
+    video.addEventListener('pause', () => { if (video.currentTime === 0) wrap.classList.remove('playing'); });
+    video.addEventListener('ended', () => { wrap.classList.remove('playing'); video.removeAttribute('controls'); video.currentTime = 0; });
+    // pause when scrolled out of view
+    new IntersectionObserver(([e]) => { if (!e.isIntersecting && !video.paused) video.pause(); }, { threshold: 0 }).observe(video);
+  }
+
   /* ---------------- Counters & cert bars ---------------- */
   function initCounters() {
     $$('.stat-num').forEach(el => {
@@ -320,7 +359,7 @@
 
   /* ---------------- Scroll reveals ---------------- */
   function initReveals() {
-    const groups = ['.stat', '.about-photo', '.about-text', '.mini-stats > div', '.patent-hero', '.card', '.pub', '.project', '.events', '.tl-item', '.grant', '.award', '.skill-col', '.sub-head', '.lang', '.cert', '.cert-note', '.contact-inner > *'];
+    const groups = ['.stat', '.about-photo', '.about-text', '.mini-stats > div', '.patent-hero', '.card', '.pub', '.project', '.events', '.tl-item', '.grant', '.award', '.rec-item', '.skill-col', '.sub-head', '.lang', '.cert', '.cert-note', '.contact-inner > *'];
     const targets = groups.flatMap(sel => $$(sel));
     $$('[data-words]:not(.hero-sub):not(.section-title)').forEach(el => targets.push(el));
     targets.forEach(el => el.classList.add('rv'));
@@ -356,7 +395,7 @@
 
   /* ---------------- Boot ---------------- */
   window.addEventListener('load', () => {
-    initHero(); initContact(); initDNA(); initTilt(); initCounters(); initReveals();
+    initHero(); initContact(); initDNA(); initTilt(); initCounters(); initReveals(); initRecVideo();
     setTimeout(() => { $('#preloader').classList.add('done'); document.body.classList.add('loaded'); }, reduce ? 0 : 1500);
   });
 })();
