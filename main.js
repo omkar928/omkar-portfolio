@@ -323,49 +323,64 @@
     });
   }
 
-  /* ---------------- Recognition video ---------------- */
-  function initRecVideo() {
-    const wrap = $('.rec-video'); if (!wrap) return;
-    const video = $('#vc-video', wrap), btn = $('.rec-play', wrap), fb = $('.rec-fallback', wrap);
-    if (!video || !btn) return;
+  /* ---------------- Recognition videos ----------------
+     Every clip autoplays muted on loop; the only control is a sound
+     toggle, and unmuting one mutes the others so audio never overlaps. */
+  function initRecVideos() {
+    const cards = $$('.rec-vid');
+    if (!cards.length) return;
+    const all = [];
 
-    let started = false, stallTimer = null;
-    const showFallback = () => { if (fb) fb.hidden = false; wrap.classList.remove('loading'); };
-    const armStall = () => { clearTimeout(stallTimer); stallTimer = setTimeout(() => { if (video.readyState < 3) showFallback(); }, 12000); };
-    const clearStall = () => { clearTimeout(stallTimer); if (fb) fb.hidden = true; };
+    cards.forEach(card => {
+      const video = $('.rec-media', card), btn = $('.rec-sound', card), fb = $('.rec-fallback', card);
+      if (!video) return;
+      const ico = btn && $('.rec-ico', btn), label = btn && $('em', btn);
+      all.push({ card, video, btn, ico, label });
 
-    btn.addEventListener('click', () => {
-      // Ignore repeat taps while the first one is still buffering.
-      if (wrap.classList.contains('loading')) return;
-      started = true;
-      video.setAttribute('controls', '');
-      wrap.classList.add('playing', 'loading');
-      armStall();
-      const p = video.play();
-      if (p && p.catch) p.catch(err => {
-        // Autoplay policy can refuse an unmuted start; retry muted so something plays.
-        if (err && err.name === 'NotAllowedError') {
-          video.muted = true;
-          const q = video.play();
-          if (q && q.catch) q.catch(showFallback);
-        } else showFallback();
+      video.muted = true;            // required for autoplay everywhere
+      video.loop = true;
+      video.playsInline = true;
+
+      let stall = null;
+      const giveUp = () => { if (fb) fb.hidden = false; card.classList.remove('loading'); };
+      const arm = () => { clearTimeout(stall); stall = setTimeout(() => { if (video.readyState < 3) giveUp(); }, 15000); };
+
+      card.classList.add('loading'); arm();
+      video.addEventListener('playing', () => { card.classList.remove('loading'); clearTimeout(stall); if (fb) fb.hidden = true; });
+      video.addEventListener('canplay', () => { card.classList.remove('loading'); clearTimeout(stall); });
+      video.addEventListener('waiting', () => { card.classList.add('loading'); arm(); });
+      video.addEventListener('error', giveUp);
+
+      // Only run while on screen — the viewer still sees every clip playing,
+      // but we do not burn data or battery on cards nobody is looking at.
+      let visible = false;
+      new IntersectionObserver(([e]) => {
+        visible = e.isIntersecting;
+        if (visible) { const p = video.play(); if (p && p.catch) p.catch(() => {}); }
+        else if (!video.paused) video.pause();
+      }, { threshold: 0.15 }).observe(card);
+
+      if (btn) btn.addEventListener('click', e => {
+        e.preventDefault(); e.stopPropagation();
+        const turningOn = video.muted;
+        all.forEach(o => setSound(o, turningOn && o.video === video));
+        if (turningOn && video.paused) { const p = video.play(); if (p && p.catch) p.catch(() => {}); }
       });
     });
 
-    video.addEventListener('waiting', () => { if (started) { wrap.classList.add('loading'); armStall(); } });
-    video.addEventListener('playing', () => { wrap.classList.remove('loading'); clearStall(); });
-    video.addEventListener('canplay', () => { wrap.classList.remove('loading'); clearStall(); });
-    video.addEventListener('error', showFallback);
-    video.addEventListener('stalled', () => { if (started) armStall(); });
-    // Only return to the poster state when the clip actually finishes — a transient
-    // pause while buffering must not throw the overlay back over the video.
-    video.addEventListener('ended', () => {
-      started = false; clearStall();
-      wrap.classList.remove('playing', 'loading');
-      video.removeAttribute('controls'); video.currentTime = 0;
+    function setSound(o, on) {
+      o.video.muted = !on;
+      if (!o.btn) return;
+      o.btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      o.btn.setAttribute('aria-label', on ? 'Mute this video' : 'Unmute this video');
+      if (o.ico) o.ico.classList.toggle('rec-ico-off', !on);
+      if (o.label) o.label.textContent = on ? 'Sound on' : 'Sound off';
+    }
+
+    // Leaving the tab should not leave audio playing behind it.
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) all.forEach(o => { if (!o.video.muted) setSound(o, false); });
     });
-    // Pause (but keep the player open) when scrolled well out of view.
-    new IntersectionObserver(([e]) => { if (!e.isIntersecting && !video.paused) video.pause(); }, { threshold: 0 }).observe(video);
   }
 
   /* ---------------- Counters & cert bars ---------------- */
@@ -423,7 +438,7 @@
 
   /* ---------------- Boot ---------------- */
   window.addEventListener('load', () => {
-    initHero(); initContact(); initDNA(); initTilt(); initCounters(); initReveals(); initRecVideo();
+    initHero(); initContact(); initDNA(); initTilt(); initCounters(); initReveals(); initRecVideos();
     setTimeout(() => { $('#preloader').classList.add('done'); document.body.classList.add('loaded'); }, reduce ? 0 : 1500);
   });
 })();
